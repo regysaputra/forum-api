@@ -25,7 +25,7 @@ describe('UserLogin entities', () => {
   it('should throw error when username contains restricted character', () => {
     // Arrange
     const payload = {
-      username: 'dicoding',
+      username: '@=dicoding',
       password: '12345678',
     };
 

@@ -107,7 +107,7 @@ describe('/users endpoint', () => {
     it('should response 400 when username contain restricted character', async () => {
       // Arrange
       const requestPayload = {
-        username: 'dicoding',
+        username: '@=dicoding',
         password: '12345678',
         fullname: 'Dicoding Indonesia',
       };
