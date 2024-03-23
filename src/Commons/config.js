@@ -3,7 +3,7 @@ require('dotenv').config({ path: `./.${process.env.NODE_ENV || 'development'}.en
 const config = {
   app: {
     host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
-    port: Number(process.env.PORT),
+    port: process.env.PORT,
     debug: process.env.NODE_ENV === 'development' ? { request: ['error'] } : {},
   },
   database: {
