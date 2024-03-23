@@ -7,3 +7,4 @@ forum-webserver.pem
 package-lock.json
 config/database/test.json
 .github/workflows/ci.yml
+src/Infrastructures/http/_test/testFiture.test.js
