@@ -8,9 +8,9 @@
 		"migrate:test": "node-pg-migrate --envPath .test.env",
 		"start": "node src/app.js",
 		"start:dev": "nodemon src/app.js",
-		"test": "jest --setupFiles dotenv/config",
-		"test:watch": "jest --watchAll --coverage --setupFiles dotenv/config",
-		"test:applications": "jest --setupFiles dotenv/config --testPathPattern=src/Applications/",
+		"test": "jest --setupFiles dotenv/config -i",
+		"test:watch": "jest --watchAll --coverage --setupFiles dotenv/config -i",
+		"test:applications": "jest --setupFiles dotenv/config --testPathPattern=src/Applications/ -i",
 		"test:commons": "jest --setupFiles dotenv/config --testPathPattern=src/Commons/",
 		"test:domains": "jest --setupFiles dotenv/config --testPathPattern=src/Domains/",
 		"test:infrastructures": "jest --setupFiles dotenv/config --testPathPattern=src/Infrastructures/"
