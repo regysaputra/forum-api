@@ -16,6 +16,9 @@ const config = {
   security: {
     accessToken: process.env.ACCESS_TOKEN_KEY,
     refreshToken: process.env.REFRESH_TOKEN_KEY,
+    awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    awsSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
+    awsRegion: process.env.AWS_REGION,
   },
 };
 

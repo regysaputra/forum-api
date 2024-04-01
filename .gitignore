@@ -6,3 +6,4 @@ coverage
 forum-webserver.pem
 package-lock.json
 config/database/test.json
+debug.log
