@@ -1,16 +1,19 @@
 const Hapi = require('@hapi/hapi');
 const os = require('os');
-const ClientError = require('../../Commons/exceptions/ClientError');
-const DomainErrorTranslator = require('../../Commons/exceptions/DomainErrorTranslator');
+const HapiSwagger = require('hapi-swagger');
+const Inert = require('@hapi/inert');
+const Vision = require('@hapi/vision');
+const config = require('../../Commons/config');
+const AuthenticationTokenManager = require('../../Applications/security/AuthenticationTokenManager');
 const users = require('../../Interfaces/http/api/users');
 const authentications = require('../../Interfaces/http/api/authentications');
-const AuthenticationTokenManager = require('../../Applications/security/AuthenticationTokenManager');
 const threads = require('../../Interfaces/http/api/threads');
-const AuthenticationError = require('../../Commons/exceptions/AuthenticationError');
-const config = require('../../Commons/config');
 const comments = require('../../Interfaces/http/api/comments');
 const replies = require('../../Interfaces/http/api/replies');
 const logger = require('../logger');
+const ClientError = require('../../Commons/exceptions/ClientError');
+const AuthenticationError = require('../../Commons/exceptions/AuthenticationError');
+const DomainErrorTranslator = require('../../Commons/exceptions/DomainErrorTranslator');
 
 const createServer = async (container) => {
   const server = Hapi.server({
@@ -57,6 +60,21 @@ const createServer = async (container) => {
 
   server.auth.strategy('bearer-auth-strategy', 'bearer-auth-scheme');
 
+  const swaggerOptions = {
+    info: {
+      title: 'Forum API Documentation',
+      version: '1.0.0',
+    },
+    securityDefinitions: {
+      Bearer: {
+        type: 'apiKey',
+        name: 'Authorization',
+        in: 'header',
+        description: 'Enter the token with the `Bearer: ` prefix, e.g. "Bearer abcd12345"'
+      }
+    },
+  };
+
   await server.register([
     {
       plugin: users,
@@ -77,6 +95,16 @@ const createServer = async (container) => {
     {
       plugin: replies,
       options: { container },
+    },
+    {
+      plugin: Inert,
+    },
+    {
+      plugin: Vision,
+    },
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions
     },
   ]);
 

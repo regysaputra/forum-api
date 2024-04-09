@@ -1,5 +1,8 @@
 class NewAuth {
   constructor(payload) {
+    if (payload === null) {
+      throw new Error('NEW_AUTH.NOT_CONTAIN_NEEDED_PROPERTY');
+    }
     this.#verifyPayload(payload);
 
     const { accessToken, refreshToken } = payload;

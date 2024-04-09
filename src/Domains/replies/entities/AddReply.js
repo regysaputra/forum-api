@@ -1,5 +1,8 @@
 class AddReply {
   constructor(payload, commentId, userId) {
+    if (payload === null) {
+      throw new Error('ADD_REPLY.NOT_CONTAIN_NEEDED_PROPERTY');
+    }
     this.#verifyPayload(payload);
 
     const { content } = payload;

@@ -1,6 +1,9 @@
 /* eslint-disable class-methods-use-this */
 class UserLogin {
   constructor(payload) {
+    if (payload === null) {
+      throw new Error('USER_LOGIN.NOT_CONTAIN_NEEDED_PROPERTY');
+    }
     this.#verifyPayload(payload);
 
     const { username, password } = payload;

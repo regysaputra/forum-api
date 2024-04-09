@@ -1,5 +1,9 @@
 class AddThread {
   constructor(payload, userid) {
+    if (payload === null) {
+      throw new Error('ADD_THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
+    }
+
     this.#verifyPayload(payload);
 
     const { title, body } = payload;

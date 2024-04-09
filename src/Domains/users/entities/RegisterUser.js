@@ -1,5 +1,8 @@
 class RegisterUser {
   constructor(payload) {
+    if (payload === null) {
+      throw new Error('REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY');
+    }
     this.#verifyPayload(payload);
 
     const { username, password, fullname } = payload;

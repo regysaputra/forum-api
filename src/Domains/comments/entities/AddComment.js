@@ -1,5 +1,8 @@
 class AddComment {
   constructor(payload, threadid, userid) {
+    if (payload === null) {
+      throw new Error('ADD_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
+    }
     this.#verifyPayload(payload);
     const { content } = payload;
 

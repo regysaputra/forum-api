@@ -11,11 +11,11 @@ class JwtTokenManager extends AuthenticationTokenManager {
   }
 
   async createAccessToken(payload) {
-    return this.#jwt.generate(payload, config.security.accessToken);
+    return this.#jwt.generate(payload, config.security.accessTokenKey, { ttlSec: 7200 });
   }
 
   async createRefreshToken(payload) {
-    return this.#jwt.generate(payload, config.security.refreshToken);
+    return this.#jwt.generate(payload, config.security.refreshTokenKey, { ttlSec: 86400 });
   }
 
   // @ts-ignore

@@ -11,12 +11,13 @@ class UsersHandler {
 
   async postUserHandler(request, h) {
     const addUserUseCase = this.#container.getInstance(AddUserUseCase.name);
-    const addedUser = await addUserUseCase.execute(request.payload);
-
+    const { id, username, fullname } = await addUserUseCase.execute(request.payload);
     const response = h.response({
       status: 'success',
       data: {
-        addedUser,
+        addedUser: {
+          id, username, fullname
+        },
       },
     });
 
