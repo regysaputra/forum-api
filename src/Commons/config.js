@@ -1,4 +1,15 @@
-require('dotenv').config({ path: `./.${process.env.NODE_ENV || 'development'}.env` });
+const nodeEnv = process.env.NODE_ENV;
+let path;
+
+if (nodeEnv === 'test') {
+  path = '.test.env';
+} else if (nodeEnv === 'development') {
+  path = '.development.env';
+} else {
+  path = '.env';
+}
+console.log('path :', path);
+require('dotenv').config({ path });
 
 const config = {
   app: {

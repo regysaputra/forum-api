@@ -7,27 +7,24 @@ const routes = (handler) => ([
     handler: handler.postUserHandler,
     options: {
       description: 'POST users',
-      notes: 'Test',
       tags: ['api', 'users'],
-      validate: {
-        payload: Joi.object({
-          username: Joi.string(),
-          password: Joi.string(),
-          fullname: Joi.string()
-        }).label('Post-users-payload')
-      },
-      response: {
-        status: {
-          201: Joi.object({
-            status: 'success',
-            data: {
-              addedUser: {
-                id: Joi.string(),
-                username: Joi.string(),
-                fullname: Joi.string()
-              }
+      plugins: {
+        'hapi-swagger': {
+          responses: {
+            201: {
+              description: 'Created',
+              schema: Joi.object({
+                status: 'success',
+                data: {
+                  addedUser: {
+                    id: Joi.string(),
+                    username: Joi.string(),
+                    fullname: Joi.string()
+                  }
+                }
+              }).label('Post-user-response')
             }
-          }).label('Post-users-response')
+          }
         }
       }
     }

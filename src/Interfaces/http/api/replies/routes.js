@@ -12,35 +12,27 @@ const routes = (handler) => ([
       tags: ['api', 'reply'],
       plugins: {
         'hapi-swagger': {
-          security: [{ Bearer: [] }]
+          security: [{ Bearer: [] }],
+          responses: {
+            description: 'POST reply',
+            schema: Joi.object({
+              status: 'success',
+              data: {
+                addedReply: {
+                  id: Joi.string(),
+                  content: Joi.string(),
+                  owner: Joi.string()
+                }
+              }
+            }).label('Post-reply-response')
+          }
         }
       },
       validate: {
         params: Joi.object({
           threadId: Joi.string().required(),
           commentId: Joi.string().required()
-        }),
-        payload: Joi.object({
-          content: Joi.string()
-        }).label('Post-replies-payload')
-      },
-      response: {
-        status: {
-          201: Joi.object({
-            status: 'success',
-            data: {
-              addedReply: {
-                id: Joi.string(),
-                content: Joi.string(),
-                owner: Joi.string()
-              }
-            }
-          }).label('Post-replies-response'),
-          401: Joi.object({
-            status: 'fail',
-            message: 'Missing authentication'
-          }).label('Post-replies-response')
-        }
+        })
       }
     },
   },
@@ -50,12 +42,19 @@ const routes = (handler) => ([
     handler: handler.deleteReplyHandler,
     options: {
       auth: 'bearer-auth-strategy',
-      description: 'DELETE replies',
-      notes: 'Test',
+      description: 'DELETE reply by reply id',
       tags: ['api', 'reply'],
       plugins: {
         'hapi-swagger': {
-          security: [{ Bearer: [] }]
+          security: [{ Bearer: [] }],
+          responses: {
+            200: {
+              description: 'OK',
+              schema: Joi.object({
+                status: 'success'
+              }).label('Delete-replies')
+            }
+          }
         }
       },
       validate: {
@@ -63,21 +62,7 @@ const routes = (handler) => ([
           threadId: Joi.string().required(),
           commentId: Joi.string().required(),
           replyId: Joi.string().required()
-        }),
-        payload: Joi.object({
-          content: Joi.string()
-        }).label('Post-replies-payload')
-      },
-      response: {
-        status: {
-          201: Joi.object({
-            status: 'success'
-          }).label('Post-replies-response'),
-          401: Joi.object({
-            status: 'fail',
-            message: 'Missing authentication'
-          }).label('Post-replies-response')
-        }
+        })
       }
     },
   },

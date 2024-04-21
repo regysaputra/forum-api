@@ -12,38 +12,28 @@ const routes = (handler) => ([
       tags: ['api', 'comment'],
       plugins: {
         'hapi-swagger': {
-          security: [{ Bearer: [] }]
+          security: [{ Bearer: [] }],
+          responses: {
+            201: {
+              description: 'POST comment',
+              schema: Joi.object({
+                status: 'success',
+                data: {
+                  addedComment: {
+                    id: Joi.string(),
+                    content: Joi.string(),
+                    owner: Joi.string()
+                  }
+                }
+              }).label('Post-comment-response')
+            }
+          }
         }
       },
       validate: {
         params: Joi.object({
           threadId: Joi.string().required()
-        }),
-        payload: Joi.object({
-          content: Joi.string()
-        }).label('Post-threads-payload')
-      },
-      response: {
-        status: {
-          201: Joi.object({
-            status: 'success',
-            data: {
-              addedComment: {
-                id: Joi.string(),
-                content: Joi.string(),
-                owner: Joi.string()
-              }
-            }
-          }).label('Post-threads-response'),
-          401: Joi.object({
-            status: 'fail',
-            message: 'Missing authentication'
-          }).label('Post-threads-response'),
-          404: Joi.object({
-            status: 'fail',
-            message: 'Thread tidak ditemukan'
-          }).label('Post-threads-response'),
-        }
+        })
       }
     },
   },
@@ -53,12 +43,19 @@ const routes = (handler) => ([
     handler: handler.deleteCommentHandler,
     options: {
       auth: 'bearer-auth-strategy',
-      description: 'delete comments',
-      notes: 'Test',
+      description: 'delete comments by comment id',
       tags: ['api', 'comment'],
       plugins: {
         'hapi-swagger': {
-          security: [{ Bearer: [] }]
+          security: [{ Bearer: [] }],
+          responses: {
+            200: {
+              description: 'OK',
+              schema: Joi.object({
+                status: 'success'
+              }).label('Delete-comment-success')
+            }
+          }
         }
       },
       validate: {
@@ -66,17 +63,6 @@ const routes = (handler) => ([
           threadId: Joi.string().required(),
           commentId: Joi.string().required()
         }).label('Delete-comments-params')
-      },
-      response: {
-        status: {
-          201: Joi.object({
-            status: 'success'
-          }).label('Post-threads-response'),
-          401: Joi.object({
-            status: 'fail',
-            message: 'Missing authentication'
-          }).label('Post-threads-response')
-        }
       }
     },
   },

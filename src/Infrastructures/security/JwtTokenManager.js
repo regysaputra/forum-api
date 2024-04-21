@@ -22,7 +22,7 @@ class JwtTokenManager extends AuthenticationTokenManager {
   async verifyAccessToken(token) {
     try {
       const artifacts = this.#jwt.decode(token);
-      this.#jwt.verify(artifacts, config.security.accessToken);
+      this.#jwt.verify(artifacts, config.security.accessTokenKey);
 
       return true;
     } catch (error) {
@@ -33,7 +33,7 @@ class JwtTokenManager extends AuthenticationTokenManager {
   async verifyRefreshToken(token) {
     try {
       const artifacts = this.#jwt.decode(token);
-      this.#jwt.verify(artifacts, config.security.refreshToken);
+      this.#jwt.verify(artifacts, config.security.refreshTokenKey);
     } catch (error) {
       throw new InvariantError('refresh token tidak valid');
     }

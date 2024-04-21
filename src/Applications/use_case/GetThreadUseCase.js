@@ -86,14 +86,12 @@ class GetThreadUseCase {
     }
 
     result.comments = comments;
-
     return result;
   }
 
   async execute(threadId) {
     const thread = await this.#threadRepository.getThreadById(threadId);
     const comments = await this.#commentRepository.getCommentsByThreadId(threadId);
-
     return this.#transform(thread, comments);
   }
 }

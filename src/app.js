@@ -1,4 +1,15 @@
-require('dotenv').config();
+const nodeEnv = process.env.NODE_ENV;
+let path;
+
+if (process.env.NODE_ENV === 'development') {
+  path = '.development.env';
+} else if (process.env.NODE_ENV === 'test') {
+  path = '.test.env';
+} else {
+  path = '.env';
+}
+
+require('dotenv').config({ path });
 const createServer = require('./Infrastructures/http/createServer');
 const container = require('./Infrastructures/container');
 
