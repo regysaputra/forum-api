@@ -15,7 +15,7 @@
 		"test:commons": "jest --setupFiles dotenv/config --testPathPattern=src/Commons/ -i",
 		"test:domains": "jest --setupFiles dotenv/config --testPathPattern=src/Domains/ -i",
 		"test:infrastructures": "jest --setupFiles dotenv/config --testPathPattern=src/Infrastructures/ -i",
-    "heroku-postbuild": "npm run migrate:prod"
+    "heroku-postbuild": "npm run migrate:prod up"
 	},
 	"keywords": [],
 	"author": "",

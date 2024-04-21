@@ -1,8 +1,8 @@
 node_modules
 coverage
-.production.env
 .development.env
 .test.env
+.env
 forum-webserver.pem
 package-lock.json
 config/database/test.json

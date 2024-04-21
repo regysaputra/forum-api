@@ -151,7 +151,7 @@ const createServer = async (container) => {
     }
 
     // @ts-ignore
-    logger.log('info', `userIP=${request.info.remoteAddress}, host=${os.hostname}, method=${request.method}, path=${request.path}, payload=${JSON.stringify(response.request.payload)}`);
+    // logger.log('info', `userIP=${request.info.remoteAddress}, host=${os.hostname}, method=${request.method}, path=${request.path}, payload=${JSON.stringify(response.request.payload)}`);
 
     // jika bukan error, lanjutkan dengan response sebelumnya (tanpa terintervensi)
     return h.continue;
