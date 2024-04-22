@@ -7,6 +7,7 @@
 		"migrate:prod": "node-pg-migrate --envPath .env",
 		"migrate:dev": "node-pg-migrate --envPath .development.env",
 		"migrate:test": "node-pg-migrate --envPath .test.env",
+    "build": "npm run migrate:prod up",
 		"start": "node src/app.js",
 		"start:dev": "cross-env NODE_ENV=development nodemon src/app.js",
 		"test": "jest --setupFiles dotenv/config -i",
