@@ -22,17 +22,6 @@ const start = async () => {
   console.log(`server start at ${server.info.uri}`);
 };
 
-start();
+// start();
 
-module.exports = async (request, h) => {
-  // Find matching route in your Hapi server
-  const response = server.match(request.method, request.url);
-
-  // If no route matches, adjust this to return an appropriate error response
-  if (!response) {
-    return h.response('Not Found').code(404);
-  }
-
-  // Return the Hapi response
-  return response;
-}
+module.exports = start;
