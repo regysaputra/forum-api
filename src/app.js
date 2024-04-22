@@ -22,6 +22,6 @@ const start = async () => {
   console.log(`server start at ${server.info.uri}`);
 };
 
-// start();
+start();
 
-module.exports = start;
+module.exports = server;
