@@ -36,8 +36,6 @@ const createServer = async (container) => {
 
         const token = authorizationHeader.split(' ')[1]; // Bearer token
 
-        const decode = await container.getInstance(AuthenticationTokenManager.name).decodePayload(token);
-
         // Perform authentication logic (verify token)
         const isValid = await container
           .getInstance(AuthenticationTokenManager.name)

@@ -26,6 +26,7 @@ describe('replies endpoint', () => {
         content: 'reply',
       };
 
+      await UsersTableTestHelper.addUser({});
       const server = await createServer(container);
       const accessToken = 'wrong_token';
 

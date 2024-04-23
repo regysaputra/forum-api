@@ -4,9 +4,9 @@ const routes = (handler) => ([
   {
     method: 'POST',
     path: '/threads/{threadId}/comments/{commentId}/replies',
-    handler: handler.postReplyHandler,
     options: {
       auth: 'bearer-auth-strategy',
+      handler: handler.postReplyHandler,
       description: 'POST replies',
       notes: 'Test',
       tags: ['api', 'reply'],
@@ -39,9 +39,9 @@ const routes = (handler) => ([
   {
     method: 'DELETE',
     path: '/threads/{threadId}/comments/{commentId}/replies/{replyId}',
-    handler: handler.deleteReplyHandler,
     options: {
       auth: 'bearer-auth-strategy',
+      handler: handler.deleteReplyHandler,
       description: 'DELETE reply by reply id',
       tags: ['api', 'reply'],
       plugins: {

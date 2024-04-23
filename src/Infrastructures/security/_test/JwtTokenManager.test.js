@@ -1,3 +1,4 @@
+const config = require('../../../Commons/config');
 const JwtTokenManager = require('../JwtTokenManager');
 
 describe('JwtTokenManager', () => {
@@ -16,7 +17,7 @@ describe('JwtTokenManager', () => {
       const accessToken = await jwtTokenManager.createAccessToken(payload);
 
       // Assert
-      expect(mockJwtToken.generate).toHaveBeenCalledWith(payload, process.env.ACCESS_TOKEN_KEY);
+      expect(mockJwtToken.generate).toHaveBeenCalledWith(payload, config.security.accessTokenKey, { ttlSec: 7200 });
       expect(accessToken).toEqual('mock_token');
     });
   });

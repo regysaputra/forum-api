@@ -40,8 +40,12 @@ class JwtTokenManager extends AuthenticationTokenManager {
   }
 
   async decodePayload(token) {
-    const artifacts = this.#jwt.decode(token);
-    return artifacts.decoded.payload;
+    try {
+      const artifacts = this.#jwt.decode(token);
+      return artifacts.decoded.payload;
+    } catch (error) {
+      throw new InvariantError('Token tidak bisa di decode');
+    }
   }
 }
 

@@ -7,22 +7,22 @@ const routes = (handler) => ([
     handler: handler.postAuthenticationHandler,
     options: {
       description: 'POST authentications',
-      notes: 'Test',
       tags: ['api', 'auth'],
-      validate: {
-        payload: Joi.object({
-          username: Joi.string(),
-          password: Joi.string()
-        }).label('Post-authentications-payload')
-      },
-      response: {
-        schema: Joi.object({
-          status: 'success',
-          data: {
-            accessToken: Joi.string(),
-            refreshToken: Joi.string()
+      plugins: {
+        'hapi-swagger': {
+          responses: {
+            201: {
+              description: 'Created',
+              schema: Joi.object({
+                status: 'success',
+                data: {
+                  accessToken: Joi.string(),
+                  refreshToken: Joi.string()
+                }
+              }).label('Post-authentications-response')
+            }
           }
-        }).label('Post-authentications-response')
+        }
       }
     }
   },
@@ -34,18 +34,20 @@ const routes = (handler) => ([
       description: 'PUT authentications',
       notes: 'Test',
       tags: ['api', 'auth'],
-      validate: {
-        payload: Joi.object({
-          refreshToken: Joi.string()
-        }).label('Put-authentications-payload')
-      },
-      response: {
-        schema: Joi.object({
-          status: 'success',
-          data: {
-            accessToken: Joi.string()
+      plugins: {
+        'hapi-swagger': {
+          responses: {
+            200: {
+              description: 'Ok',
+              schema: Joi.object({
+                status: 'success',
+                data: {
+                  accessToken: Joi.string()
+                }
+              }).label('Put-authentications-response')
+            }
           }
-        }).label('Put-authentications-response')
+        }
       }
     }
   },
@@ -55,17 +57,18 @@ const routes = (handler) => ([
     handler: handler.deleteAuthenticationHandler,
     options: {
       description: 'DELETE authentications',
-      notes: 'Test',
       tags: ['api', 'auth'],
-      validate: {
-        payload: Joi.object({
-          refreshToken: Joi.string()
-        }).label('Delete-authentications-payload')
-      },
-      response: {
-        schema: Joi.object({
-          status: 'success'
-        }).label('Delete-authentications-response')
+      plugins: {
+        'hapi-swagger': {
+          responses: {
+            200: {
+              description: 'Ok',
+              schema: Joi.object({
+                status: 'success'
+              }).label('Delete-authentications-response')
+            }
+          }
+        }
       }
     }
   },
