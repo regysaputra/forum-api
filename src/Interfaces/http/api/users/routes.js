@@ -4,14 +4,13 @@ const routes = (handler) => ([
   {
     method: 'POST',
     path: '/users',
-    handler: handler.postUserHandler,
     options: {
-      description: 'POST users',
-      tags: ['api', 'users'],
+      handler: handler.postUserHandler,
+      tags: ['api'],
       plugins: {
         'hapi-swagger': {
           responses: {
-            201: {
+            '201': {
               description: 'Created',
               schema: Joi.object({
                 status: 'success',
@@ -22,9 +21,13 @@ const routes = (handler) => ([
                     fullname: Joi.string()
                   }
                 }
-              }).label('Post-user-response')
+              })
+            },
+            '400': {
+              description: 'BadRequest'
             }
-          }
+          },
+          payloadType: 'form'
         }
       }
     }

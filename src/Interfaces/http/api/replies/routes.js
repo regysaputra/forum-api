@@ -5,26 +5,27 @@ const routes = (handler) => ([
     method: 'POST',
     path: '/threads/{threadId}/comments/{commentId}/replies',
     options: {
-      auth: 'bearer-auth-strategy',
       handler: handler.postReplyHandler,
-      description: 'POST replies',
-      notes: 'Test',
-      tags: ['api', 'reply'],
+      tags: ['api'],
+      auth: 'bearer-auth-strategy',
+      description: 'add reply to specific comment',
       plugins: {
         'hapi-swagger': {
-          security: [{ Bearer: [] }],
+          security: [{ Bearer: {} }],
           responses: {
-            description: 'POST reply',
-            schema: Joi.object({
-              status: 'success',
-              data: {
-                addedReply: {
-                  id: Joi.string(),
-                  content: Joi.string(),
-                  owner: Joi.string()
+            '201': {
+              description: 'Created',
+              schema: Joi.object({
+                status: 'success',
+                data: {
+                  addedReply: {
+                    id: Joi.string(),
+                    content: Joi.string(),
+                    owner: Joi.string()
+                  }
                 }
-              }
-            }).label('Post-reply-response')
+              })
+            }
           }
         }
       },
@@ -34,25 +35,25 @@ const routes = (handler) => ([
           commentId: Joi.string().required()
         })
       }
-    },
+    }
   },
   {
     method: 'DELETE',
     path: '/threads/{threadId}/comments/{commentId}/replies/{replyId}',
     options: {
-      auth: 'bearer-auth-strategy',
       handler: handler.deleteReplyHandler,
-      description: 'DELETE reply by reply id',
-      tags: ['api', 'reply'],
+      tags: ['api'],
+      auth: 'bearer-auth-strategy',
+      description: 'Delete reply from specific comment',
       plugins: {
         'hapi-swagger': {
-          security: [{ Bearer: [] }],
+          security: [{ Bearer: {} }],
           responses: {
-            200: {
+            '200': {
               description: 'OK',
               schema: Joi.object({
                 status: 'success'
-              }).label('Delete-replies')
+              })
             }
           }
         }
@@ -64,7 +65,7 @@ const routes = (handler) => ([
           replyId: Joi.string().required()
         })
       }
-    },
+    }
   },
 ]);
 

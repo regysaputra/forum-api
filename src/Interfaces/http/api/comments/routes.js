@@ -4,18 +4,16 @@ const routes = (handler) => ([
   {
     method: 'POST',
     path: '/threads/{threadId}/comments',
-    handler: handler.postCommentHandler,
     options: {
+      handler: handler.postCommentHandler,
+      tags: ['api'],
       auth: 'bearer-auth-strategy',
-      description: 'POST comments',
-      notes: 'Test',
-      tags: ['api', 'comment'],
+      description: 'Add comment to specific thread',
       plugins: {
         'hapi-swagger': {
-          security: [{ Bearer: [] }],
           responses: {
-            201: {
-              description: 'POST comment',
+            '201': {
+              description: 'Created',
               schema: Joi.object({
                 status: 'success',
                 data: {
@@ -25,9 +23,10 @@ const routes = (handler) => ([
                     owner: Joi.string()
                   }
                 }
-              }).label('Post-comment-response')
+              })
             }
-          }
+          },
+          security: [{ Bearer: {} }]
         }
       },
       validate: {
@@ -35,25 +34,25 @@ const routes = (handler) => ([
           threadId: Joi.string().required()
         })
       }
-    },
+    }
   },
   {
     method: 'DELETE',
     path: '/threads/{threadId}/comments/{commentId}',
-    handler: handler.deleteCommentHandler,
     options: {
+      handler: handler.deleteCommentHandler,
+      tags: ['api'],
       auth: 'bearer-auth-strategy',
-      description: 'delete comments by comment id',
-      tags: ['api', 'comment'],
+      description: 'delete comment from specific thread',
       plugins: {
         'hapi-swagger': {
-          security: [{ Bearer: [] }],
+          security: [{ Bearer: {} }],
           responses: {
-            200: {
+            '200': {
               description: 'OK',
               schema: Joi.object({
                 status: 'success'
-              }).label('Delete-comment-success')
+              })
             }
           }
         }
@@ -62,9 +61,9 @@ const routes = (handler) => ([
         params: Joi.object({
           threadId: Joi.string().required(),
           commentId: Joi.string().required()
-        }).label('Delete-comments-params')
+        })
       }
-    },
+    }
   },
 ]);
 

@@ -4,16 +4,14 @@ const routes = (handler) => ([
   {
     method: 'POST',
     path: '/threads',
-    handler: handler.postThreadHandler,
     options: {
+      handler: handler.postThreadHandler,
+      tags: ['api'],
       auth: 'bearer-auth-strategy',
-      description: 'POST threads',
-      tags: ['api', 'thread'],
       plugins: {
         'hapi-swagger': {
-          security: [{ Bearer: [] }],
           responses: {
-            201: {
+            '201': {
               description: 'Created',
               schema: Joi.object({
                 status: 'success',
@@ -22,9 +20,12 @@ const routes = (handler) => ([
                   title: Joi.string(),
                   owner: Joi.string()
                 }
-              }).label('Post-thread-responses')
+              })
             }
-          }
+          },
+          security: [{
+            Bearer: {}
+          }]
         }
       }
     }
@@ -34,10 +35,11 @@ const routes = (handler) => ([
     path: '/threads/{threadId}',
     options: {
       handler: handler.getThreadHandler,
+      tags: ['api'],
       plugins: {
         'hapi-swagger': {
           responses: {
-            200: {
+            '200': {
               description: 'OK',
               schema: Joi.object({
                 id: Joi.string(),
@@ -57,13 +59,16 @@ const routes = (handler) => ([
                     username: Joi.string()
                   }))
                 }))
-              }).label('Detail-Thread-Result')
+              })
             }
           }
         }
       },
-      description: 'GET detail threads by thread id',
-      tags: ['api', 'thread']
+      validate: {
+        params: Joi.object({
+          threadId: Joi.string().required()
+        })
+      }
     }
   },
 ]);
