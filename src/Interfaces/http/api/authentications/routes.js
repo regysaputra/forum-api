@@ -20,8 +20,15 @@ const routes = (handler) => ([
                 }
               })
             }
-          }
+          },
+          payloadType: 'form'
         }
+      },
+      validate: {
+        payload: Joi.object({
+          username: Joi.string().required().description('body payload'),
+          password: Joi.string().required().description('body payload')
+        })
       }
     }
   },

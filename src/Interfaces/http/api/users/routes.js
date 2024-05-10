@@ -22,13 +22,17 @@ const routes = (handler) => ([
                   }
                 }
               })
-            },
-            '400': {
-              description: 'BadRequest'
             }
           },
           payloadType: 'form'
         }
+      },
+      validate: {
+        payload: Joi.object({
+          username: Joi.string().required().description('body payload'),
+          fullname: Joi.string().required().description('body payload'),
+          password: Joi.string().required().description('body payload')
+        })
       }
     }
   },
