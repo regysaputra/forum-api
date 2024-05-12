@@ -1,20 +1,21 @@
 <h1 align="center">Forum API</h1>
 
-# :green_book:Table of Contents
-* [:open_book:Forum API](#forum-api)
-  * [:hammer_and_wrench:Built With](#built-with)
+# :green_book: Table of Contents
+* [📖 Forum API ](#-forum-api-)
+  * [:hammer_and_wrench: Built With ](#-built-with-)
     * [Tech Stack](#tech-stack)
-  * [:computer:Getting Started](#getting-started)
+  * [:computer: Getting Started](#-getting-started)
     * [Prerequisites](#prerequisites)
     * [Setup](#setup)
     * [Usage](#usage)
     * [Test](#test)
-  * [:bust_in_silhouette:Author](#author)
+  * [:bust_in_silhouette: Author](#-author)
 
-# :open_book:Forum API
+# 📖 Forum API <a name="forumm-api"></a>
 This Forum API provides the backend functionality for a discussion forum. It's built using the hapi.js framework and a PostgreSQL database, following Clean Architecture principles
 
-## :hammer_and_wrench:Built With
+## :hammer_and_wrench: Built With 
+
 ### Tech Stack
 <details>
   <summary>Server</summary>
@@ -25,7 +26,7 @@ This Forum API provides the backend functionality for a discussion forum. It's b
   Postgresql
 </details>
 
-## :computer:Getting Started
+## :computer: Getting Started
 To get a local copy up and running, follow these steps.
 ### Prerequisites
 In order to run this project you need:
@@ -102,7 +103,7 @@ npm run test
 ```
 It will run the all the unit test and integration of these project
 
-## :bust_in_silhouette:Author
+## :bust_in_silhouette: Author
 #### Regy Saputra
 * Github: https://github.com/regysaputra
 * Twitter: @regysaputra27
