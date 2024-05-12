@@ -1,15 +1,15 @@
 <h1 align="center">Forum API</h1>
 
 # :green_book:Table of Contents
-* :open_book:[Forum API](#forum-api)
-  * :hammer_and_wrench:[Built With](#built-with)
+* [:open_book:Forum API](#forum-api)
+  * [:hammer_and_wrench:Built With](#built-with)
     * [Tech Stack](#tech-stack)
-  * :computer:[Getting Started](#getting-started)
+  * [:computer:Getting Started](#getting-started)
     * [Prerequisites](#prerequisites)
     * [Setup](#setup)
     * [Usage](#usage)
     * [Test](#test)
-  * :bust_in_silhouette:[Author](#author)
+  * [:bust_in_silhouette:Author](#author)
 
 # :open_book:Forum API
 This Forum API provides the backend functionality for a discussion forum. It's built using the hapi.js framework and a PostgreSQL database, following Clean Architecture principles
