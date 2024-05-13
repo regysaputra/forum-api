@@ -1,20 +1,20 @@
 <h1 align="center">Forum API</h1>
 
 # :green_book: Table of Contents
-* [📖 Forum API ](#-forum-api-)
-  * [🛠 Built With ](#-built-with-)
+* [📖 Forum API ](#-forum-api)
+  * [🛠 Built With ](#-built-with)
     * [Tech Stack](#tech-stack)
   * [💻 Getting Started ](#-getting-started)
     * [Prerequisites](#prerequisites)
     * [Setup](#setup)
     * [Usage](#usage)
     * [Test](#test)
-  * [:bust_in_silhouette: Author](#-author)
+  * [👥 Author](#-author)
 
-# 📖 Forum API <a name="forum-api"></a>
+# 📖 Forum API<a name="forum-api"></a>
 This Forum API provides the backend functionality for a discussion forum. It's built using the hapi.js framework and a PostgreSQL database, following Clean Architecture principles
 
-## 🛠 Built With <a name="built-with"></a>
+## 🛠 Built With<a name="built-with"></a>
 
 ### Tech Stack
 <details>
@@ -103,7 +103,7 @@ npm run test
 ```
 It will run the all the unit test and integration of these project
 
-## :bust_in_silhouette: Author
+## 👥 Author<a name="author"></a>
 #### Regy Saputra
 * Github: https://github.com/regysaputra
 * Twitter: @regysaputra27
