@@ -2,19 +2,19 @@
 
 # :green_book: Table of Contents
 * [📖 Forum API ](#-forum-api-)
-  * [:hammer_and_wrench: Built With ](#-built-with-)
+  * [🛠 Built With ](#-built-with-)
     * [Tech Stack](#tech-stack)
-  * [:computer: Getting Started](#-getting-started)
+  * [💻 Getting Started ](#-getting-started)
     * [Prerequisites](#prerequisites)
     * [Setup](#setup)
     * [Usage](#usage)
     * [Test](#test)
   * [:bust_in_silhouette: Author](#-author)
 
-# 📖 Forum API <a name="forumm-api"></a>
+# 📖 Forum API <a name="forum-api"></a>
 This Forum API provides the backend functionality for a discussion forum. It's built using the hapi.js framework and a PostgreSQL database, following Clean Architecture principles
 
-## :hammer_and_wrench: Built With 
+## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack
 <details>
@@ -26,7 +26,7 @@ This Forum API provides the backend functionality for a discussion forum. It's b
   Postgresql
 </details>
 
-## :computer: Getting Started
+## 💻 Getting Started<a name="getting-started"></a>
 To get a local copy up and running, follow these steps.
 ### Prerequisites
 In order to run this project you need:
