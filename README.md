@@ -1,10 +1,12 @@
+<a name="top"></a>
+
 <h1 align="center">Forum API</h1>
 
 # :green_book: Table of Contents
-* [📖 Forum API ](#-forum-api)
-  * [🛠 Built With ](#-built-with)
+* [📖 Forum API](#-forum-api)
+  * [🛠 Built With](#-built-with)
     * [Tech Stack](#tech-stack)
-  * [💻 Getting Started ](#-getting-started)
+  * [💻 Getting Started](#-getting-started)
     * [Prerequisites](#prerequisites)
     * [Setup](#setup)
     * [Usage](#usage)
@@ -25,6 +27,8 @@ This Forum API provides the backend functionality for a discussion forum. It's b
   <summary>Database</summary>
   Postgresql
 </details>
+
+<p align="right"><a href="#top">back to top</a></p>
 
 ## 💻 Getting Started<a name="getting-started"></a>
 To get a local copy up and running, follow these steps.
@@ -103,9 +107,13 @@ npm run test
 ```
 It will run the all the unit test and integration of these project
 
+<p align="right"><a href="#top">back to top</a></p>
+
 ## 👥 Author<a name="author"></a>
 #### Regy Saputra
 * Github: https://github.com/regysaputra
 * Twitter: @regysaputra27
 * Linkedin: Regy Saputra
+
+<p align="right"><a href="#top">back to top</a></p>
 
