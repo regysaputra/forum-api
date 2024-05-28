@@ -125,7 +125,6 @@ const createServer = async (container) => {
     // mendapatkan konteks response dari request
     const { response, route } = request;
     if (response instanceof Error) {
-      // console.log('response :', response);
       if (response.output.payload.message === 'Invalid request payload input') {
         // logger.log('info', request);
         const path = route.path.split('/').slice(-1)[0];
