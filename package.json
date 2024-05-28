@@ -14,7 +14,7 @@
 		"test:applications": "jest --setupFiles dotenv/config --testPathPattern=src/Applications/ -i",
 		"test:commons": "jest --setupFiles dotenv/config --testPathPattern=src/Commons/ -i",
 		"test:domains": "jest --setupFiles dotenv/config --testPathPattern=src/Domains/ -i",
-		"test:infrastructures": "jest --runInBand --setupFiles dotenv/config --testPathPattern=src/Infrastructures/ -i",
+		"test:infrastructures": "jest --runInBand --setupFiles dotenv/config --testPathPattern=src/Infrastructures/ -i"
 	},
 	"keywords": [],
 	"author": "",
