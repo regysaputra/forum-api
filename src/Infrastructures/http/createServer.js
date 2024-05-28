@@ -10,10 +10,15 @@ const authentications = require('../../Interfaces/http/api/authentications');
 const threads = require('../../Interfaces/http/api/threads');
 const comments = require('../../Interfaces/http/api/comments');
 const replies = require('../../Interfaces/http/api/replies');
-const logger = require('../logger');
+// const logger = require('../logger');
 const ClientError = require('../../Commons/exceptions/ClientError');
 const AuthenticationError = require('../../Commons/exceptions/AuthenticationError');
 const DomainErrorTranslator = require('../../Commons/exceptions/DomainErrorTranslator');
+
+var fs = require('fs');
+var util = require('util');
+const pluralToSingular = require("../../Commons/utils/pluralToSingular");
+const translatePath = require("../../Commons/utils/translatePath");
 
 const createServer = async (container) => {
   const server = Hapi.server({
@@ -118,9 +123,19 @@ const createServer = async (container) => {
 
   server.ext('onPreResponse', (request, h) => {
     // mendapatkan konteks response dari request
-    const { response } = request;
-
+    const { response, route } = request;
     if (response instanceof Error) {
+      // console.log('response :', response);
+      if (response.output.payload.message === 'Invalid request payload input') {
+        // logger.log('info', request);
+        const path = route.path.split('/').slice(-1)[0];
+        const newResponse = h.response({
+          status: 'fail',
+          message: `tidak dapat membuat ${translatePath(pluralToSingular(path))} baru karena tipe data tidak sesuai`,
+        });
+        newResponse.code(400);
+        return newResponse;
+      }
       // bila response tersebut error, tangani sesuai kebutuhan
       const translatedError = DomainErrorTranslator.translate(response);
 

@@ -26,8 +26,7 @@ const routes = (handler) => ([
                 }
               })
             }
-          },
-          payloadType: 'form'
+          }
         }
       },
       validate: {
@@ -36,7 +35,7 @@ const routes = (handler) => ([
           commentId: Joi.string().required().description('url parameter')
         }),
         payload: Joi.object({
-          content: Joi.string().required().description('body payload')
+          content: Joi.string()
         })
       }
     }

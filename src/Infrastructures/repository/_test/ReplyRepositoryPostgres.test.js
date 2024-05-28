@@ -35,7 +35,7 @@ describe('ReplyRepositoryPostgres', () => {
       await expect(replyRepositoryPostgres.addReply(addReply))
         .rejects
         .toThrow(ServerError);
-    });
+    }, 20000);
 
     it('should persist add reply', async () => {
       // Arrange
@@ -56,7 +56,7 @@ describe('ReplyRepositoryPostgres', () => {
 
       // Assert
       expect(reply).toHaveLength(1);
-    });
+    }, 20000);
 
     it('should return added reply correctly', async () => {
       // Arrange
@@ -79,7 +79,7 @@ describe('ReplyRepositoryPostgres', () => {
         content: 'reply',
         owner: 'user-123',
       }));
-    });
+    }, 20000);
   });
 
   describe('findReplyById function', () => {
@@ -91,7 +91,7 @@ describe('ReplyRepositoryPostgres', () => {
       expect(replyRepositoryPostgres.findReplyById('invalid_id'))
         .rejects
         .toThrow(NotFoundError);
-    });
+    }, 20000);
 
     it('should return reply', async () => {
       // Arrange
@@ -111,7 +111,7 @@ describe('ReplyRepositoryPostgres', () => {
       expect(reply.reply_is_delete).toEqual(false);
       expect(reply.fk_comment_id).toEqual('comment-123');
       expect(reply.fk_user_id).toEqual('user-123');
-    });
+    }, 20000);
   });
 
   describe('getRepliesByCommentId', () => {
@@ -124,7 +124,7 @@ describe('ReplyRepositoryPostgres', () => {
 
       // Assert
       expect(reply).toEqual([]);
-    });
+    }, 20000);
 
     it('should return array containing reply', async () => {
       // Arrange
@@ -145,7 +145,7 @@ describe('ReplyRepositoryPostgres', () => {
       expect(typeof replies[0].reply_date).toEqual('object');
       expect(replies[0].user_username).toEqual('dicoding');
       expect(typeof replies[0].reply_is_delete).toEqual('boolean');
-    });
+    }, 20000);
   });
 
   describe('deleteReply function', () => {
@@ -163,6 +163,6 @@ describe('ReplyRepositoryPostgres', () => {
 
       // Assert
       expect(reply[0].reply_is_delete).toEqual(true);
-    });
+    }, 20000);
   });
 });

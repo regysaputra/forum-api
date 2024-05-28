@@ -33,7 +33,7 @@ describe('CommentRepositoryPostgres', () => {
       await expect(commentRepositoryPostgres.addComment(addComment))
         .rejects
         .toThrow(ServerError);
-    });
+    }, 20000);
 
     it('should persist add comment', async () => {
       // Arrange
@@ -51,7 +51,7 @@ describe('CommentRepositoryPostgres', () => {
       // Assert
       const comment = await CommentsTableTestHelper.findCommentById('comment-123');
       expect(comment).toHaveLength(1);
-    });
+    }, 20000);
 
     it('should return added comment correctly', async () => {
       // Arrange
@@ -73,7 +73,7 @@ describe('CommentRepositoryPostgres', () => {
         content: 'comment',
         owner: 'user-123',
       }));
-    });
+    }, 20000);
   });
 
   describe('verifyCommentAvailability function', () => {
@@ -85,7 +85,7 @@ describe('CommentRepositoryPostgres', () => {
       expect(commentRepositoryPostgres.verifyCommentAvailability('invalid_id'))
         .rejects
         .toThrow(NotFoundError);
-    });
+    }, 20000);
 
     it('should not throw NotFoundError when comment exist', async () => {
       // Arrange
@@ -99,7 +99,7 @@ describe('CommentRepositoryPostgres', () => {
         .resolves
         .not
         .toThrow(NotFoundError);
-    });
+    }, 20000);
   });
 
   describe('findCommentById function', () => {
@@ -111,7 +111,7 @@ describe('CommentRepositoryPostgres', () => {
       await expect(commentRepositoryPostgres.findCommentById('invalid_id'))
         .rejects
         .toThrow(NotFoundError);
-    });
+    }, 20000);
 
     it('should not throw NotFoundError when comment exist', async () => {
       // Arrange
@@ -125,7 +125,7 @@ describe('CommentRepositoryPostgres', () => {
         .resolves
         .not
         .toThrow(NotFoundError);
-    });
+    }, 20000);
 
     it('should return comment when comment exist', async () => {
       // Arrange
@@ -145,7 +145,7 @@ describe('CommentRepositoryPostgres', () => {
       expect(comment.comment_is_delete).toEqual(false);
       expect(comment.fk_thread_id).toEqual('thread-123');
       expect(comment.fk_user_id).toEqual('user-123');
-    });
+    }, 20000);
   });
 
   describe('getCommentByThreadId', () => {
@@ -158,7 +158,7 @@ describe('CommentRepositoryPostgres', () => {
 
       // Assert
       expect(comment).toEqual([]);
-    });
+    }, 20000);
 
     it('should return array containing comment', async () => {
       // Arrange
@@ -179,7 +179,7 @@ describe('CommentRepositoryPostgres', () => {
       expect(typeof comments[0].comment_date).toEqual('object');
       expect(comments[0].user_username).toEqual('dicoding');
       expect(typeof comments[0].comment_is_delete).toEqual('boolean');
-    });
+    }, 20000);
   });
 
   describe('deleteComment function', () => {
@@ -197,6 +197,6 @@ describe('CommentRepositoryPostgres', () => {
 
       // Assert
       expect(comment[0].comment_is_delete).toEqual(true);
-    });
+    }, 20000);
   });
 });

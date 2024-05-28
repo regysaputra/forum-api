@@ -23,15 +23,14 @@ const routes = (handler) => ([
                 }
               })
             }
-          },
-          payloadType: 'form'
+          }
         }
       },
       validate: {
         payload: Joi.object({
-          username: Joi.string().required().description('body payload'),
-          fullname: Joi.string().required().description('body payload'),
-          password: Joi.string().required().description('body payload')
+          username: Joi.string(),
+          fullname: Joi.string(),
+          password: Joi.string()
         })
       }
     }

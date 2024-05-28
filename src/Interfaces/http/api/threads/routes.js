@@ -25,13 +25,13 @@ const routes = (handler) => ([
           },
           security: [{
             Bearer: {}
-          }],
-          payloadType: 'form'
+          }]
         }
       },
       validate: {
         payload: Joi.object({
-          content: Joi.string().required().description('body payload')
+          title: Joi.string(),
+          body: Joi.string()
         })
       }
     }
@@ -72,11 +72,35 @@ const routes = (handler) => ([
       },
       validate: {
         params: Joi.object({
-          threadId: Joi.string().required()
+          threadId: Joi.string()
         })
       }
     }
   },
+  {
+    method: 'GET',
+    path: '/threads',
+    options: {
+      handler: handler.getAllThreadHandler,
+      tags: ['api'],
+      plugins: {
+        'hapi-swagger': {
+          responses: {
+            '200': {
+              description: 'OK',
+              schema: Joi.object({
+                id: Joi.string(),
+                title: Joi.string(),
+                body: Joi.string(),
+                date: Joi.string(),
+                username: Joi.string()
+              })
+            }
+          }
+        }
+      },
+    }
+  }
 ]);
 
 module.exports = routes;

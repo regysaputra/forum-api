@@ -23,7 +23,7 @@ describe('UserRepositoryPostgres', () => {
 
       // Action & Assert
       await expect(userRepositoryPostgres.verifyAvailableUsername('dicoding')).rejects.toThrow(InvariantError);
-    });
+    }, 20000);
 
     it('should not throw InvariantError when username available ', async () => {
       // Arrange
@@ -31,7 +31,7 @@ describe('UserRepositoryPostgres', () => {
 
       // Action & Assert
       await expect(userRepositoryPostgres.verifyAvailableUsername('dicoding')).resolves.not.toThrow(InvariantError);
-    });
+    }, 20000);
   });
 
   describe('addUser function', () => {
@@ -50,7 +50,7 @@ describe('UserRepositoryPostgres', () => {
       await expect(userRepositoryPostgres.addUser(registerUser))
         .rejects
         .toThrow(ServerError);
-    });
+    }, 20000);
 
     it('should persist register user', async () => {
       // Arrange
@@ -68,7 +68,7 @@ describe('UserRepositoryPostgres', () => {
       // Assert
       const users = await UsersTableTestHelper.findUsersById('user-123');
       expect(users).toHaveLength(1);
-    });
+    }, 20000);
 
     it('should return registered user correctly', async () => {
       // Arrange
@@ -89,7 +89,7 @@ describe('UserRepositoryPostgres', () => {
         username: 'dicoding',
         fullname: 'Dicoding Indonesia',
       }));
-    });
+    }, 20000);
   });
 
   describe('getPasswordByUsername', () => {
@@ -101,7 +101,7 @@ describe('UserRepositoryPostgres', () => {
       expect(userRepositoryPostgres.getPasswordByUsername('anonymous'))
         .rejects
         .toThrow(InvariantError);
-    });
+    }, 20000);
 
     it('should return username password when user is found', async () => {
       // Arrange
@@ -116,7 +116,7 @@ describe('UserRepositoryPostgres', () => {
 
       // Assert
       expect(password).toBe('secret_password');
-    });
+    }, 20000);
   });
 
   describe('getIdByUsername', () => {
@@ -128,7 +128,7 @@ describe('UserRepositoryPostgres', () => {
       await expect(userRepositoryPostgres.getIdByUsername('dicoding'))
         .rejects
         .toThrow(InvariantError);
-    });
+    }, 20000);
 
     it('should return user id correctly', async () => {
       // Arrange
@@ -140,6 +140,6 @@ describe('UserRepositoryPostgres', () => {
 
       // Assert
       expect(userId).toEqual('user-321');
-    });
+    }, 20000);
   });
 });

@@ -13,7 +13,7 @@ describe('replies endpoint', () => {
     await CommentsTableTestHelper.cleanTable();
     await ThreadsTableTestHelper.cleanTable();
     await UsersTableTestHelper.cleanTable();
-  });
+  }, 30000);
 
   afterAll(async () => {
     await pool.end();
@@ -45,7 +45,7 @@ describe('replies endpoint', () => {
       expect(response.statusCode).toEqual(401);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('access token tidak valid');
-    });
+    }, 20000);
 
     it('should response 401 when not include access token in request header', async () => {
       // Arrange
@@ -67,7 +67,7 @@ describe('replies endpoint', () => {
       expect(response.statusCode).toEqual(401);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Missing authentication');
-    });
+    }, 20000);
 
     it('should response 404 when thread is not found', async () => {
       // Arrange
@@ -95,7 +95,7 @@ describe('replies endpoint', () => {
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Thread tidak ditemukan');
-    });
+    }, 20000);
 
     it('should response 404 when comment is not found', async () => {
       // Arrange
@@ -123,8 +123,8 @@ describe('replies endpoint', () => {
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
-      expect(responseJson.message).toEqual('Comment tidak ditemukan');
-    });
+      expect(responseJson.message).toEqual('Komentar tidak ditemukan');
+    }, 20000);
 
     it('should response 400 when request payload not contain needed property', async () => {
       // Arrange
@@ -150,8 +150,8 @@ describe('replies endpoint', () => {
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
-      expect(responseJson.message).toEqual('tidak dapat menambahkan reply baru karena properti yang dibutuhkan tidak ada');
-    });
+      expect(responseJson.message).toEqual('tidak dapat membuat balasan baru karena properti yang dibutuhkan tidak ada');
+    }, 20000);
 
     it('should response 400 when request payload not meet data type specification', async () => {
       // Arrange
@@ -179,8 +179,8 @@ describe('replies endpoint', () => {
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
-      expect(responseJson.message).toEqual('tidak dapat menambahkan reply baru karena tipe data tidak sesuai');
-    });
+      expect(responseJson.message).toEqual('tidak dapat membuat balasan baru karena tipe data tidak sesuai');
+    }, 20000);
 
     it('should response 201 and persisted reply', async () => {
       // Arrange
@@ -209,7 +209,7 @@ describe('replies endpoint', () => {
       expect(response.statusCode).toEqual(201);
       expect(responseJson.status).toEqual('success');
       expect(responseJson.data.addedReply).toBeDefined();
-    });
+    }, 20000);
   });
 
   describe('when DELETE /replies', () => {
@@ -237,7 +237,7 @@ describe('replies endpoint', () => {
       expect(response.statusCode).toEqual(401);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('access token tidak valid');
-    });
+    }, 20000);
 
     it('should response 401 when not include access token in request header', async () => {
       // Arrange
@@ -259,7 +259,7 @@ describe('replies endpoint', () => {
       expect(response.statusCode).toEqual(401);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Missing authentication');
-    });
+    }, 20000);
 
     it('should response 404 when thread is not found', async () => {
       // Arrange
@@ -282,7 +282,7 @@ describe('replies endpoint', () => {
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Thread tidak ditemukan');
-    });
+    }, 20000);
 
     it('should response 404 when comment is not found', async () => {
       // Arrange
@@ -305,8 +305,8 @@ describe('replies endpoint', () => {
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
-      expect(responseJson.message).toEqual('Comment tidak ditemukan');
-    });
+      expect(responseJson.message).toEqual('Komentar tidak ditemukan');
+    }, 20000);
 
     it('should response 404 when reply is not found', async () => {
       // Arrange
@@ -331,7 +331,7 @@ describe('replies endpoint', () => {
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Reply tidak ditemukan');
-    });
+    }, 20000);
 
     it('should response 403 when the user wants to delete a comment that is not theirs', async () => {
       // Arrange
@@ -356,7 +356,7 @@ describe('replies endpoint', () => {
       expect(response.statusCode).toEqual(403);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Unauthorize user');
-    });
+    }, 20000);
 
     it('should response 200 when reply delete succesfuly', async () => {
       // Arrange
@@ -380,6 +380,6 @@ describe('replies endpoint', () => {
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(200);
       expect(responseJson.status).toEqual('success');
-    });
+    }, 20000);
   });
 });

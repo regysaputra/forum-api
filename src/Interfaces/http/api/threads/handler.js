@@ -1,4 +1,5 @@
 const AddThreadUseCase = require('../../../../Applications/use_case/AddThreadUseCase');
+const GetAllThreadUseCase = require("../../../../Applications/use_case/GetAllThreadUseCase");
 const GetThreadUseCase = require('../../../../Applications/use_case/GetThreadUseCase');
 
 class ThreadsHandler {
@@ -8,6 +9,7 @@ class ThreadsHandler {
     this.#container = container;
     this.postThreadHandler = this.postThreadHandler.bind(this);
     this.getThreadHandler = this.getThreadHandler.bind(this);
+    this.getAllThreadHandler = this.getAllThreadHandler.bind(this);
   }
 
   async postThreadHandler(request, h) {
@@ -29,12 +31,28 @@ class ThreadsHandler {
 
   async getThreadHandler(request, h) {
     const getThreadUseCase = this.#container.getInstance(GetThreadUseCase.name);
-    const thread = await getThreadUseCase
-      .execute(request.params.threadId);
+    const thread = await getThreadUseCase.execute(request.params.threadId);
+
     const response = h.response({
       status: 'success',
       data: {
         thread,
+      },
+    });
+
+    response.code(200);
+
+    return response;
+  }
+
+  async getAllThreadHandler(request, h) {
+    const getAllThreadUseCase = this.#container.getInstance(GetAllThreadUseCase.name);
+    console.log('HELLO WORLD');
+    const threads = await getAllThreadUseCase.execute();
+    const response = h.response({
+      status: 'success',
+      data: {
+        threads,
       },
     });
 

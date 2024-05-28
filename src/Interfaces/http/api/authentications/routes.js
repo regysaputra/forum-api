@@ -26,8 +26,8 @@ const routes = (handler) => ([
       },
       validate: {
         payload: Joi.object({
-          username: Joi.string().required().description('body payload'),
-          password: Joi.string().required().description('body payload')
+          username: Joi.string(),
+          password: Joi.string()
         })
       }
     }

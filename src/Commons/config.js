@@ -13,10 +13,8 @@ if (nodeEnv === 'test') {
 }
 
 require('dotenv').config({ path });
-
-const databaseUrl = process.env.DATABASE_URL;
-const parsedUrl = new URL(databaseUrl);
-console.log('parsedUrl :', parsedUrl.searchParams.get('sslrootcert'));
+// const databaseUrl = process.env.DATABASE_URL;
+// const parsedUrl = new URL(databaseUrl);
 const config = {
   app: {
     host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
@@ -24,15 +22,18 @@ const config = {
     debug: process.env.NODE_ENV === 'development' ? { request: ['error'] } : {},
   },
   database: {
-    host: parsedUrl.hostname,
-    port: Number(parsedUrl.port),
-    user: parsedUrl.username,
-    password: parsedUrl.password,
-    database: parsedUrl.pathname.slice(1),
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    username: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    port: 5432,
     ssl: {
-      rejectUnauthorized: true,
-      ca: fs.readFileSync(parsedUrl.searchParams.get('sslrootcert'))
-    }
+      require: true,
+    },
+    // ssl: {
+    //   rejectUnauthorized: true,
+    //   ca: fs.readFileSync(parsedUrl.searchParams.get('sslrootcert'))
+    // }
   },
   security: {
     accessTokenKey: process.env.ACCESS_TOKEN_KEY,

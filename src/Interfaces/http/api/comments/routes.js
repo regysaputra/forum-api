@@ -26,8 +26,7 @@ const routes = (handler) => ([
               })
             }
           },
-          security: [{ Bearer: {} }],
-          payloadType: 'form'
+          security: [{ Bearer: {} }]
         }
       },
       validate: {
@@ -35,7 +34,7 @@ const routes = (handler) => ([
           threadId: Joi.string().required().description('url parameter')
         }),
         payload: Joi.object({
-          content: Joi.string().required().description('body payload')
+          content: Joi.string()
         })
       }
     }

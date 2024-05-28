@@ -14,7 +14,7 @@ describe('comments endpoint', () => {
   afterEach(async () => {
     await UsersTableTestHelper.cleanTable();
     await ThreadsTableTestHelper.cleanTable();
-  });
+  }, 30000);
 
   describe('when POST /comments', () => {
     it('should response 401 when include wrong access token', async () => {
@@ -41,7 +41,7 @@ describe('comments endpoint', () => {
       expect(response.statusCode).toEqual(401);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('access token tidak valid');
-    });
+    }, 20000);
 
     it('should response 401 when not include access token in request header', async () => {
       // Arrange
@@ -63,7 +63,7 @@ describe('comments endpoint', () => {
       expect(response.statusCode).toEqual(401);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Missing authentication');
-    });
+    }, 20000);
 
     it('should response 404 when thread is not found', async () => {
       // Arrange
@@ -91,7 +91,7 @@ describe('comments endpoint', () => {
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Thread tidak ditemukan');
-    });
+    }, 20000);
 
     it('should response 400 when request payload not contain needed property', async () => {
       // Arrange
@@ -116,8 +116,8 @@ describe('comments endpoint', () => {
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
-      expect(responseJson.message).toEqual('tidak dapat menambahkan comment baru karena properti yang dibutuhkan tidak ada');
-    });
+      expect(responseJson.message).toEqual('tidak dapat membuat komentar baru karena properti yang dibutuhkan tidak ada');
+    }, 20000);
 
     it('should response 400 when request payload not meet data type specification', async () => {
       // Arrange
@@ -144,8 +144,8 @@ describe('comments endpoint', () => {
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
-      expect(responseJson.message).toEqual('tidak dapat menambahkan comment baru karena tipe data tidak sesuai');
-    });
+      expect(responseJson.message).toEqual('tidak dapat membuat komentar baru karena tipe data tidak sesuai');
+    }, 20000);
 
     it('should response 201 and persisted comment', async () => {
       // Arrange
@@ -173,7 +173,7 @@ describe('comments endpoint', () => {
       expect(response.statusCode).toEqual(201);
       expect(responseJson.status).toEqual('success');
       expect(responseJson.data.addedComment).toBeDefined();
-    });
+    }, 20000);
   });
 
   describe('when DELETE /comments', () => {
@@ -201,7 +201,7 @@ describe('comments endpoint', () => {
       expect(response.statusCode).toEqual(401);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('access token tidak valid');
-    });
+    }, 20000);
 
     it('should response 401 when not include access token in request header', async () => {
       // Arrange
@@ -223,7 +223,7 @@ describe('comments endpoint', () => {
       expect(response.statusCode).toEqual(401);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Missing authentication');
-    });
+    }, 20000);
 
     it('should response 404 when thread is not found', async () => {
       // Arrange
@@ -247,7 +247,7 @@ describe('comments endpoint', () => {
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Thread tidak ditemukan');
-    });
+    }, 20000);
 
     it('should response 404 when comment is not found', async () => {
       // Arrange
@@ -270,8 +270,8 @@ describe('comments endpoint', () => {
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(404);
       expect(responseJson.status).toEqual('fail');
-      expect(responseJson.message).toEqual('Comment tidak ditemukan');
-    });
+      expect(responseJson.message).toEqual('Komentar tidak ditemukan');
+    }, 20000);
 
     it('should response 403 when the user wants to delete a comment that is not theirs', async () => {
       // Arrange
@@ -295,7 +295,7 @@ describe('comments endpoint', () => {
       expect(response.statusCode).toEqual(403);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('Unauthorize user');
-    });
+    }, 20000);
 
     it('should response 200 when comment delete successfuly', async () => {
       // Arrange
@@ -318,6 +318,6 @@ describe('comments endpoint', () => {
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(200);
       expect(responseJson.status).toEqual('success');
-    });
+    }, 20000);
   });
 });

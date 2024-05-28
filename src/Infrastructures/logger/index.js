@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
     ),
   }));
 
-  logger.add(new winston.transports.File({ filename: 'debug.log' }));
+  logger.add(new winston.transports.File({ filename: 'debug.json' }));
 }
 
 if (process.env.NODE_ENV === 'production') {

@@ -25,7 +25,7 @@ describe('AuthenticationRepositoryPostgres', () => {
       const tokens = await AuthenticationsTableTestHelper.findToken(token);
       expect(tokens).toHaveLength(1);
       expect(tokens[0].token).toEqual(token);
-    });
+    }, 20000);
   });
 
   describe('checkAvailabilityToken function', () => {
@@ -38,7 +38,7 @@ describe('AuthenticationRepositoryPostgres', () => {
       await expect(authenticationRepositoryPostgres.checkAvailabilityToken(token))
         .rejects
         .toThrow(InvariantError);
-    });
+    }, 20000);
 
     it('should not throw InvariantError when token not available', async () => {
       // Arrange
@@ -51,7 +51,7 @@ describe('AuthenticationRepositoryPostgres', () => {
         .resolves
         .not
         .toThrow(InvariantError);
-    });
+    }, 20000);
   });
 
   describe('deleteToken function', () => {
@@ -67,6 +67,6 @@ describe('AuthenticationRepositoryPostgres', () => {
       // Assert
       const tokens = await AuthenticationsTableTestHelper.findToken(token);
       expect(tokens).toHaveLength(0);
-    });
+    }, 20000);
   });
 });

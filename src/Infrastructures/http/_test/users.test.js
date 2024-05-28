@@ -10,7 +10,7 @@ describe('/users endpoint', () => {
 
   afterEach(async () => {
     await UsersTableTestHelper.cleanTable();
-  });
+  }, 30000);
 
   describe('when POST /users', () => {
     it('should response 201 and persisted user', async () => {
@@ -34,7 +34,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(201);
       expect(responseJson.status).toEqual('success');
       expect(responseJson.data.addedUser).toBeDefined();
-    });
+    }, 20000);
 
     it('should response 400 when request payload not contain needed property', async () => {
       // Arrange
@@ -56,7 +56,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('tidak dapat membuat user baru karena properti yang dibutuhkan tidak ada');
-    });
+    }, 20000);
 
     it('should response 400 when request payload not meet data type specification', async () => {
       // Arrange
@@ -79,7 +79,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('tidak dapat membuat user baru karena tipe data tidak sesuai');
-    });
+    }, 20000);
 
     it('should response 400 when username more than 50 character', async () => {
       // Arrange
@@ -102,7 +102,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('tidak dapat membuat user baru karena karakter username melebihi batas limit');
-    });
+    }, 20000);
 
     it('should response 400 when username contain restricted character', async () => {
       // Arrange
@@ -125,7 +125,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('tidak dapat membuat user baru karena username mengandung karakter terlarang');
-    });
+    }, 20000);
 
     it('should response 400 when username unavailable', async () => {
       // Arrange
@@ -149,7 +149,7 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).toEqual('username tidak tersedia');
-    });
+    }, 20000);
 
     it('should handle server error correctly', async () => {
       // Arrange
@@ -172,6 +172,6 @@ describe('/users endpoint', () => {
       expect(response.statusCode).toEqual(500);
       expect(responseJson.status).toEqual('error');
       expect(responseJson.message).toEqual('terjadi kegagalan pada server kami');
-    });
+    }, 20000);
   });
 });
