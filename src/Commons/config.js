@@ -1,6 +1,3 @@
-const { URL } = require('url');
-const fs = require('fs');
-
 const nodeEnv = process.env.NODE_ENV;
 let path;
 
@@ -13,12 +10,11 @@ if (nodeEnv === 'test') {
 }
 
 require('dotenv').config({ path });
-// const databaseUrl = process.env.DATABASE_URL;
-// const parsedUrl = new URL(databaseUrl);
+
 const config = {
   app: {
     host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
-    port: process.env.PORT,
+    port: process.env.PORT || 3000,
     debug: process.env.NODE_ENV === 'development' ? { request: ['error'] } : {},
   },
   database: {
@@ -26,7 +22,7 @@ const config = {
     database: process.env.PGDATABASE,
     username: process.env.PGUSER,
     password: process.env.PGPASSWORD,
-    port: 5432,
+    port: process.env.PGPORT,
     ssl: {
       require: true,
     },
