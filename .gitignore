@@ -4,6 +4,5 @@ coverage
 .test.env
 .env
 forum-webserver.pem
-package-lock.json
 config/database/test.json
 debug.log

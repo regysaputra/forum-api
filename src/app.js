@@ -13,10 +13,8 @@ require('dotenv').config({ path });
 const createServer = require('./Infrastructures/http/createServer');
 const container = require('./Infrastructures/container');
 
-let server;
-
 const start = async () => {
-  server = await createServer(container);
+  const server = await createServer(container);
   await server.start();
   // eslint-disable-next-line no-console
   console.log(`server start at ${server.info.uri}`);
